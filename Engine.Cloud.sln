@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Cloud.Core", "Engine.Cloud.Core\Engine.Cloud.Core.csproj", "{54054D6F-6BD9-4EC5-A5EB-75294AFB5B75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_WindowsServices", "_WindowsServices", "{3A2026A6-6EE2-4821-9F31-65138E4ECC51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Cloud.QueueAction", "Engine.Cloud.QueueAction\Engine.Cloud.QueueAction.csproj", "{48CCECEB-D1C1-4D76-97CD-1872D2239BA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54054D6F-6BD9-4EC5-A5EB-75294AFB5B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54054D6F-6BD9-4EC5-A5EB-75294AFB5B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54054D6F-6BD9-4EC5-A5EB-75294AFB5B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54054D6F-6BD9-4EC5-A5EB-75294AFB5B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48CCECEB-D1C1-4D76-97CD-1872D2239BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CCECEB-D1C1-4D76-97CD-1872D2239BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CCECEB-D1C1-4D76-97CD-1872D2239BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CCECEB-D1C1-4D76-97CD-1872D2239BA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48CCECEB-D1C1-4D76-97CD-1872D2239BA5} = {3A2026A6-6EE2-4821-9F31-65138E4ECC51}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs:8080/tfs/sistemas
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Engine.Cloud.Core\\Engine.Cloud.Core.csproj
+		SccProjectName1 = Engine.Cloud.Core
+		SccLocalPath1 = Engine.Cloud.Core
+		SccProjectUniqueName2 = Engine.Cloud.QueueAction\\Engine.Cloud.QueueAction.csproj
+		SccProjectTopLevelParentUniqueName2 = Engine.Cloud.sln
+		SccProjectName2 = Engine.Cloud.QueueAction
+		SccLocalPath2 = Engine.Cloud.QueueAction
+	EndGlobalSection
+EndGlobal

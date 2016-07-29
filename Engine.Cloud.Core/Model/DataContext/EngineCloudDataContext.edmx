@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Engine.Cloud.Core.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerCode" Type="varchar" MaxLength="15" />
+          <Property Name="FirstAccessDate" Type="datetime" />
+          <Property Name="AccessDenied" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="TypeHipervisorId" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Plataform" Type="varchar" MaxLength="20" />
+          <Property Name="Distribution" Type="varchar" MaxLength="20" />
+          <Property Name="Version" Type="varchar" MaxLength="20" />
+          <Property Name="Architecture" Type="varchar" MaxLength="4" />
+          <Property Name="TypeInstall" Type="varchar" MaxLength="20" />
+          <Property Name="Observation" Type="varchar" MaxLength="50" />
+          <Property Name="DiskSO" Type="int" />
+          <Property Name="Internal" Type="bit" />
+          <Property Name="AdditionalProducts" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="QueueAction">
+          <Key>
+            <PropertyRef Name="QueueActionId" />
+          </Key>
+          <Property Name="QueueActionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AfterQueueActionId" Type="bigint" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="User" Type="nvarchar" MaxLength="100" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="TypeActionId" Type="int" Nullable="false" />
+          <Property Name="StatusActionId" Type="int" Nullable="false" />
+          <Property Name="Result" Type="varchar(max)" />
+          <Property Name="TotalCompleted" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="IpAddress" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="QueueActionReference">
+          <Key>
+            <PropertyRef Name="QueueActionId" />
+          </Key>
+          <Property Name="QueueActionId" Type="bigint" Nullable="false" />
+          <Property Name="ValueId" Type="bigint" Nullable="false" />
+          <Property Name="TypeQueueActionReferenceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QueueActionStep">
+          <Key>
+            <PropertyRef Name="QueueActionStepId" />
+          </Key>
+          <Property Name="QueueActionStepId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QueueActionId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="TypeActionStepId" Type="int" Nullable="false" />
+          <Property Name="StatusActionId" Type="int" Nullable="false" />
+          <Property Name="RequestBody" Type="varchar(max)" />
+          <Property Name="ResultBody" Type="varchar(max)" />
+          <Property Name="ServiceCode" Type="varchar" MaxLength="250" />
+          <Property Name="Attempts" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="ServerId" />
+          </Key>
+          <Property Name="ServerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="NickName" Type="varchar" MaxLength="250" />
+          <Property Name="IP" Type="varchar" MaxLength="150" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="StatusBlockId" Type="int" Nullable="false" />
+          <Property Name="MessageStatus" Type="varchar" MaxLength="150" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="PlanId" Type="int" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="TypeManagementId" Type="int" Nullable="false" />
+          <Property Name="TypeInstallOriginId" Type="int" Nullable="false" />
+          <Property Name="HypervisorIdentifier" Type="varchar" MaxLength="250" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="LastUpdateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServerBlock">
+          <Key>
+            <PropertyRef Name="ServerBlockId" />
+          </Key>
+          <Property Name="ServerBlockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InitialDate" Type="datetime" Nullable="false" />
+          <Property Name="FinalDate" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="VmsBlocked" Type="text" />
+          <Property Name="TotalVmsBlocked" Type="int" />
+          <Property Name="Finished" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_QueueActionReference_QueueAction1">
+          <End Role="QueueAction" Type="Self.QueueAction" Multiplicity="1" />
+          <End Role="QueueActionReference" Type="Self.QueueActionReference" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="QueueAction">
+              <PropertyRef Name="QueueActionId" />
+            </Principal>
+            <Dependent Role="QueueActionReference">
+              <PropertyRef Name="QueueActionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QueueActionSteps_QueueAction">
+          <End Role="QueueAction" Type="Self.QueueAction" Multiplicity="1" />
+          <End Role="QueueActionStep" Type="Self.QueueActionStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QueueAction">
+              <PropertyRef Name="QueueActionId" />
+            </Principal>
+            <Dependent Role="QueueActionStep">
+              <PropertyRef Name="QueueActionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Server_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Server" Type="Self.Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Server_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="1" />
+          <End Role="Server" Type="Self.Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Server_Plan">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="1" />
+          <End Role="Server" Type="Self.Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="PlanId" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EngineCloudCoreModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QueueAction" EntityType="Self.QueueAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QueueActionReference" EntityType="Self.QueueActionReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QueueActionStep" EntityType="Self.QueueActionStep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Server" EntityType="Self.Server" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServerBlock" EntityType="Self.ServerBlock" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_QueueActionReference_QueueAction1" Association="Self.FK_QueueActionReference_QueueAction1">
+            <End Role="QueueAction" EntitySet="QueueAction" />
+            <End Role="QueueActionReference" EntitySet="QueueActionReference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QueueActionSteps_QueueAction" Association="Self.FK_QueueActionSteps_QueueAction">
+            <End Role="QueueAction" EntitySet="QueueAction" />
+            <End Role="QueueActionStep" EntitySet="QueueActionStep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Server_Client" Association="Self.FK_Server_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Server" EntitySet="Server" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Server_Image" Association="Self.FK_Server_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="Server" EntitySet="Server" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Server_Plan" Association="Self.FK_Server_Plan">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="Server" EntitySet="Server" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Engine.Cloud.Core.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EngineCloudDataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Engine.Cloud.Core.Model.Client" />
+          <EntitySet Name="Image" EntityType="Engine.Cloud.Core.Model.Image" />
+          <EntitySet Name="Plan" EntityType="Engine.Cloud.Core.Model.Plan" />
+          <EntitySet Name="QueueActionReference" EntityType="Engine.Cloud.Core.Model.QueueActionReference" />
+          <EntitySet Name="QueueActionStep" EntityType="Engine.Cloud.Core.Model.QueueActionStep" />
+          <EntitySet Name="ServerBlock" EntityType="Engine.Cloud.Core.Model.ServerBlock" />
+          <EntitySet Name="QueueAction" EntityType="Engine.Cloud.Core.Model.QueueAction" />
+          <AssociationSet Name="FK_QueueActionReference_QueueAction1" Association="Engine.Cloud.Core.Model.FK_QueueActionReference_QueueAction1">
+            <End Role="QueueAction" EntitySet="QueueAction" />
+            <End Role="QueueActionReference" EntitySet="QueueActionReference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QueueActionSteps_QueueAction" Association="Engine.Cloud.Core.Model.FK_QueueActionSteps_QueueAction">
+            <End Role="QueueAction" EntitySet="QueueAction" />
+            <End Role="QueueActionStep" EntitySet="QueueActionStep" />
+          </AssociationSet>
+          <EntitySet Name="Server" EntityType="Engine.Cloud.Core.Model.Server" />
+          <AssociationSet Name="FK_Server_Client" Association="Engine.Cloud.Core.Model.FK_Server_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Server" EntitySet="Server" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Server_Image" Association="Engine.Cloud.Core.Model.FK_Server_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="Server" EntitySet="Server" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Server_Plan" Association="Engine.Cloud.Core.Model.FK_Server_Plan">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="Server" EntitySet="Server" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FirstAccessDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Server" Relationship="Engine.Cloud.Core.Model.FK_Server_Client" FromRole="Client" ToRole="Server" />
+          <Property Name="AccessDenied" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="TypeHipervisorId" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Plataform" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Distribution" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Version" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Architecture" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TypeInstall" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Observation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DiskSO" Type="Int32" />
+          <Property Name="Internal" Type="Boolean" />
+          <Property Name="AdditionalProducts" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Server" Relationship="Engine.Cloud.Core.Model.FK_Server_Image" FromRole="Image" ToRole="Server" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="Server" Relationship="Engine.Cloud.Core.Model.FK_Server_Plan" FromRole="Plan" ToRole="Server" />
+        </EntityType>
+        <EntityType Name="QueueActionReference">
+          <Key>
+            <PropertyRef Name="QueueActionId" />
+          </Key>
+          <Property Name="QueueActionId" Type="Int64" Nullable="false" />
+          <Property Name="ValueId" Type="Int64" Nullable="false" />
+          <Property Name="TypeQueueActionReferenceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QueueAction" Relationship="Engine.Cloud.Core.Model.FK_QueueActionReference_QueueAction1" FromRole="QueueActionReference" ToRole="QueueAction" />
+        </EntityType>
+        <EntityType Name="QueueActionStep">
+          <Key>
+            <PropertyRef Name="QueueActionStepId" />
+          </Key>
+          <Property Name="QueueActionStepId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QueueActionId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeActionStepId" Type="Int32" Nullable="false" />
+          <Property Name="StatusActionId" Type="Int32" Nullable="false" />
+          <Property Name="RequestBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ResultBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceCode" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Attempts" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="QueueAction" Relationship="Engine.Cloud.Core.Model.FK_QueueActionSteps_QueueAction" FromRole="QueueActionStep" ToRole="QueueAction" />
+        </EntityType>
+        <EntityType Name="ServerBlock">
+          <Key>
+            <PropertyRef Name="ServerBlockId" />
+          </Key>
+          <Property Name="ServerBlockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InitialDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinalDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="VmsBlocked" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TotalVmsBlocked" Type="Int32" />
+          <Property Name="Finished" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QueueAction">
+          <Key>
+            <PropertyRef Name="QueueActionId" />
+          </Key>
+          <Property Name="QueueActionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AfterQueueActionId" Type="Int64" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="User" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="TypeActionId" Type="Int32" Nullable="false" />
+          <Property Name="StatusActionId" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TotalCompleted" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IpAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="QueueActionReference" Relationship="Engine.Cloud.Core.Model.FK_QueueActionReference_QueueAction1" FromRole="QueueAction" ToRole="QueueActionReference" />
+          <NavigationProperty Name="QueueActionStep" Relationship="Engine.Cloud.Core.Model.FK_QueueActionSteps_QueueAction" FromRole="QueueAction" ToRole="QueueActionStep" />
+        </EntityType>
+        <Association Name="FK_QueueActionReference_QueueAction1">
+          <End Type="Engine.Cloud.Core.Model.QueueAction" Role="QueueAction" Multiplicity="1" />
+          <End Type="Engine.Cloud.Core.Model.QueueActionReference" Role="QueueActionReference" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="QueueAction">
+              <PropertyRef Name="QueueActionId" />
+            </Principal>
+            <Dependent Role="QueueActionReference">
+              <PropertyRef Name="QueueActionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QueueActionSteps_QueueAction">
+          <End Type="Engine.Cloud.Core.Model.QueueAction" Role="QueueAction" Multiplicity="1" />
+          <End Type="Engine.Cloud.Core.Model.QueueActionStep" Role="QueueActionStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QueueAction">
+              <PropertyRef Name="QueueActionId" />
+            </Principal>
+            <Dependent Role="QueueActionStep">
+              <PropertyRef Name="QueueActionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="ServerId" />
+          </Key>
+          <Property Name="ServerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="StatusBlockId" Type="Int32" Nullable="false" />
+          <Property Name="MessageStatus" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="PlanId" Type="Int32" Nullable="false" />
+          <Property Name="ImageId" Type="Int32" Nullable="false" />
+          <Property Name="TypeManagementId" Type="Int32" Nullable="false" />
+          <Property Name="TypeInstallOriginId" Type="Int32" Nullable="false" />
+          <Property Name="HypervisorIdentifier" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="Engine.Cloud.Core.Model.FK_Server_Client" FromRole="Server" ToRole="Client" />
+          <NavigationProperty Name="Image" Relationship="Engine.Cloud.Core.Model.FK_Server_Image" FromRole="Server" ToRole="Image" />
+          <NavigationProperty Name="Plan" Relationship="Engine.Cloud.Core.Model.FK_Server_Plan" FromRole="Server" ToRole="Plan" />
+        </EntityType>
+        <Association Name="FK_Server_Client">
+          <End Type="Engine.Cloud.Core.Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Engine.Cloud.Core.Model.Server" Role="Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Server_Image">
+          <End Type="Engine.Cloud.Core.Model.Image" Role="Image" Multiplicity="1" />
+          <End Type="Engine.Cloud.Core.Model.Server" Role="Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Server_Plan">
+          <End Type="Engine.Cloud.Core.Model.Plan" Role="Plan" Multiplicity="1" />
+          <End Type="Engine.Cloud.Core.Model.Server" Role="Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="PlanId" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EngineCloudCoreModelStoreContainer" CdmEntityContainer="EngineCloudDataContext">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="AccessDenied" ColumnName="AccessDenied" />
+                <ScalarProperty Name="FirstAccessDate" ColumnName="FirstAccessDate" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Image">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="AdditionalProducts" ColumnName="AdditionalProducts" />
+                <ScalarProperty Name="Internal" ColumnName="Internal" />
+                <ScalarProperty Name="DiskSO" ColumnName="DiskSO" />
+                <ScalarProperty Name="Observation" ColumnName="Observation" />
+                <ScalarProperty Name="TypeInstall" ColumnName="TypeInstall" />
+                <ScalarProperty Name="Architecture" ColumnName="Architecture" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Distribution" ColumnName="Distribution" />
+                <ScalarProperty Name="Plataform" ColumnName="Plataform" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TypeHipervisorId" ColumnName="TypeHipervisorId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plan">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.Plan">
+              <MappingFragment StoreEntitySet="Plan">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QueueActionReference">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.QueueActionReference">
+              <MappingFragment StoreEntitySet="QueueActionReference">
+                <ScalarProperty Name="TypeQueueActionReferenceId" ColumnName="TypeQueueActionReferenceId" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="QueueActionId" ColumnName="QueueActionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QueueActionStep">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.QueueActionStep">
+              <MappingFragment StoreEntitySet="QueueActionStep">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Attempts" ColumnName="Attempts" />
+                <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
+                <ScalarProperty Name="ResultBody" ColumnName="ResultBody" />
+                <ScalarProperty Name="RequestBody" ColumnName="RequestBody" />
+                <ScalarProperty Name="StatusActionId" ColumnName="StatusActionId" />
+                <ScalarProperty Name="TypeActionStepId" ColumnName="TypeActionStepId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="QueueActionId" ColumnName="QueueActionId" />
+                <ScalarProperty Name="QueueActionStepId" ColumnName="QueueActionStepId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServerBlock">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.ServerBlock">
+              <MappingFragment StoreEntitySet="ServerBlock">
+                <ScalarProperty Name="Finished" ColumnName="Finished" />
+                <ScalarProperty Name="TotalVmsBlocked" ColumnName="TotalVmsBlocked" />
+                <ScalarProperty Name="VmsBlocked" ColumnName="VmsBlocked" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FinalDate" ColumnName="FinalDate" />
+                <ScalarProperty Name="InitialDate" ColumnName="InitialDate" />
+                <ScalarProperty Name="ServerBlockId" ColumnName="ServerBlockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QueueAction">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.QueueAction">
+              <MappingFragment StoreEntitySet="QueueAction">
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="TotalCompleted" ColumnName="TotalCompleted" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="StatusActionId" ColumnName="StatusActionId" />
+                <ScalarProperty Name="TypeActionId" ColumnName="TypeActionId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AfterQueueActionId" ColumnName="AfterQueueActionId" />
+                <ScalarProperty Name="QueueActionId" ColumnName="QueueActionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Server">
+            <EntityTypeMapping TypeName="Engine.Cloud.Core.Model.Server">
+              <MappingFragment StoreEntitySet="Server">
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="HypervisorIdentifier" ColumnName="HypervisorIdentifier" />
+                <ScalarProperty Name="TypeInstallOriginId" ColumnName="TypeInstallOriginId" />
+                <ScalarProperty Name="TypeManagementId" ColumnName="TypeManagementId" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="MessageStatus" ColumnName="MessageStatus" />
+                <ScalarProperty Name="StatusBlockId" ColumnName="StatusBlockId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ServerId" ColumnName="ServerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="5943a8c568f644ee8a3200f972520026" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.Client" Width="1.5" PointX="3.875" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.Image" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.Plan" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.QueueActionReference" Width="1.5" PointX="8.875" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.QueueActionStep" Width="1.5" PointX="11" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.ServerBlock" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.QueueAction" Width="1.5" PointX="12.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Engine.Cloud.Core.Model.Server" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="Engine.Cloud.Core.Model.FK_QueueActionReference_QueueAction1" ManuallyRouted="false" />
+        <AssociationConnector Association="Engine.Cloud.Core.Model.FK_QueueActionSteps_QueueAction" ManuallyRouted="false" />
+        <AssociationConnector Association="Engine.Cloud.Core.Model.FK_Server_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Engine.Cloud.Core.Model.FK_Server_Image" ManuallyRouted="false" />
+        <AssociationConnector Association="Engine.Cloud.Core.Model.FK_Server_Plan" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

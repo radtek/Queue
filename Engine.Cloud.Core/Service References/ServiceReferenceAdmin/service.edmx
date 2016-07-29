@@ -1,0 +1,272 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="SPF" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="Stamp">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="DataCenterName" Type="Edm.String" />
+        <Property Name="NameOfServerToCreateAndAssociateToStamp" Type="Edm.String" />
+        <Property Name="ServerTypeOfServerToCreateAndAssociateToStamp" Type="Edm.String" />
+        <NavigationProperty Name="Servers" Relationship="SPF.Stamp_Servers_Server_Stamps" ToRole="Server_Stamps" FromRole="Stamp_Servers" />
+        <NavigationProperty Name="Tenants" Relationship="SPF.Stamp_Tenants" ToRole="Tenants" FromRole="Stamp" />
+      </EntityType>
+      <EntityType Name="VMRoleGalleryItem">
+        <Key>
+          <PropertyRef Name="Name" />
+          <PropertyRef Name="Publisher" />
+          <PropertyRef Name="Version" />
+        </Key>
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="GalleryPackage" Type="Edm.Stream" Nullable="false" />
+        <Property Name="Icon" Type="Edm.Stream" Nullable="false" />
+        <Property Name="IconUrl" Type="Edm.String" />
+        <Property Name="OriginalImportDate" Type="Edm.DateTime" />
+        <Property Name="LastContentRevisionDate" Type="Edm.DateTime" />
+        <Property Name="ContentRevisionsCount" Type="Edm.Int32" />
+        <Property Name="Label" Type="Edm.String" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Publisher" Type="Edm.String" Nullable="false" />
+        <Property Name="PublishDate" Type="Edm.DateTime" />
+        <Property Name="PublisherLabel" Type="Edm.String" />
+        <Property Name="PublishingStatus" Type="Edm.String" />
+        <Property Name="Version" Type="Edm.String" Nullable="false" />
+        <Property Name="ViewDefinitionVersion" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="VM">
+        <Key>
+          <PropertyRef Name="ID" />
+          <PropertyRef Name="StampId" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ComputerName" Type="Edm.String" />
+        <Property Name="StampId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CloudId" Type="Edm.Guid" />
+        <Property Name="Status" Type="Edm.String" />
+        <Property Name="StatusString" Type="Edm.String" />
+        <Property Name="Owner" Type="SPF.UserAndRole" />
+        <Property Name="GrantedToList" Type="Collection(SPF.UserAndRole)" Nullable="false" />
+        <Property Name="CloudVMRoleName" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="Tenant">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="SubscriptionID" Type="Edm.Guid" />
+        <Property Name="IssuerName" Type="Edm.String" />
+        <Property Name="AuthenticationKey" Type="Edm.String" />
+        <NavigationProperty Name="Roles" Relationship="SPF.Tenant_Roles" ToRole="Roles" FromRole="Tenant" />
+        <NavigationProperty Name="Stamps" Relationship="SPF.Tenant_Stamps" ToRole="Stamps" FromRole="Tenant" />
+      </EntityType>
+      <EntityType Name="Role">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+      </EntityType>
+      <EntityType Name="TrustedIssuer">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" />
+        <Property Name="AuthenticationKey" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="Server">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ServerType" Type="Edm.String" />
+        <NavigationProperty Name="Stamps" Relationship="SPF.Stamp_Servers_Server_Stamps" ToRole="Stamp_Servers" FromRole="Server_Stamps" />
+        <NavigationProperty Name="SpfSettings" Relationship="SPF.Server_SpfSettings" ToRole="SpfSettings" FromRole="Server" />
+      </EntityType>
+      <EntityType Name="VMRole">
+        <Key>
+          <PropertyRef Name="ID" />
+          <PropertyRef Name="StampId" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Label" Type="Edm.String" />
+        <Property Name="ProvisioningState" Type="Edm.String" />
+        <Property Name="StampId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CloudId" Type="Edm.Guid" />
+        <Property Name="CloudName" Type="Edm.String" />
+        <Property Name="CloudServiceId" Type="Edm.Guid" />
+        <Property Name="Substate" Type="SPF.Substate" />
+        <Property Name="InstanceView" Type="SPF.InstanceView" />
+        <Property Name="Owner" Type="SPF.UserAndRole" />
+        <Property Name="GrantedToList" Type="Collection(SPF.UserAndRole)" Nullable="false" />
+        <NavigationProperty Name="VMs" Relationship="SPF.VMRole_VMs" ToRole="VMs" FromRole="VMRole" />
+      </EntityType>
+      <ComplexType Name="Substate">
+        <Property Name="VMRoleMessages" Type="Collection(SPF.VMRoleMessage)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="VMRoleMessage">
+        <Property Name="VMId" Type="Edm.Guid" />
+        <Property Name="MessageQualifier" Type="Edm.String" />
+        <Property Name="Message" Type="Edm.String" />
+      </ComplexType>
+      <ComplexType Name="InstanceView">
+        <Property Name="InstanceCount" Type="Edm.Int64" />
+        <Property Name="VIPs" Type="Collection(SPF.VMRoleVIP)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="VMRoleVIP">
+        <Property Name="NetworkAdapterName" Type="Edm.String" />
+        <Property Name="LoadbalancerConfigurationName" Type="Edm.String" />
+        <Property Name="VIP" Type="Edm.String" />
+      </ComplexType>
+      <ComplexType Name="UserAndRole">
+        <Property Name="UserName" Type="Edm.String" />
+        <Property Name="RoleName" Type="Edm.String" />
+        <Property Name="RoleID" Type="Edm.Guid" />
+      </ComplexType>
+      <EntityType Name="EventRegistration">
+        <Key>
+          <PropertyRef Name="Action" />
+          <PropertyRef Name="Resource" />
+        </Key>
+        <Property Name="Resource" Type="Edm.String" Nullable="false" />
+        <Property Name="Action" Type="Edm.String" Nullable="false" />
+        <Property Name="RunbookName" Type="Edm.String" />
+        <Property Name="Enabled" Type="Edm.Boolean" />
+        <Property Name="ResourceDisplayName" Type="Edm.String" />
+        <Property Name="ActionDisplayName" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="CloudService">
+        <Key>
+          <PropertyRef Name="ID" />
+          <PropertyRef Name="StampId" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="StampId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Label" Type="Edm.String" />
+        <Property Name="ProvisioningState" Type="Edm.String" />
+        <Property Name="Owner" Type="SPF.UserAndRole" />
+        <Property Name="GrantedToList" Type="Collection(SPF.UserAndRole)" Nullable="false" />
+        <NavigationProperty Name="Resources" Relationship="SPF.CloudService_Resources" ToRole="Resources" FromRole="CloudService" />
+      </EntityType>
+      <EntityType Name="SpfSetting">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ServerID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Value" Type="Edm.String" />
+        <Property Name="SettingType" Type="Edm.String" />
+      </EntityType>
+      <Association Name="Stamp_Servers_Server_Stamps">
+        <End Type="SPF.Server" Role="Server_Stamps" Multiplicity="*" />
+        <End Type="SPF.Stamp" Role="Stamp_Servers" Multiplicity="*" />
+      </Association>
+      <Association Name="Stamp_Tenants">
+        <End Type="SPF.Tenant" Role="Tenants" Multiplicity="*" />
+        <End Type="SPF.Stamp" Role="Stamp" Multiplicity="*" />
+      </Association>
+      <Association Name="Tenant_Roles">
+        <End Type="SPF.Tenant" Role="Tenant" Multiplicity="*" />
+        <End Type="SPF.Role" Role="Roles" Multiplicity="*" />
+      </Association>
+      <Association Name="Tenant_Stamps">
+        <End Type="SPF.Tenant" Role="Tenant" Multiplicity="*" />
+        <End Type="SPF.Stamp" Role="Stamps" Multiplicity="*" />
+      </Association>
+      <Association Name="Server_SpfSettings">
+        <End Type="SPF.Server" Role="Server" Multiplicity="*" />
+        <End Type="SPF.SpfSetting" Role="SpfSettings" Multiplicity="*" />
+      </Association>
+      <Association Name="VMRole_VMs">
+        <End Type="SPF.VMRole" Role="VMRole" Multiplicity="*" />
+        <End Type="SPF.VM" Role="VMs" Multiplicity="*" />
+      </Association>
+      <Association Name="CloudService_Resources">
+        <End Type="SPF.VMRole" Role="Resources" Multiplicity="*" />
+        <End Type="SPF.CloudService" Role="CloudService" Multiplicity="*" />
+      </Association>
+    </Schema>
+    <Schema Namespace="Admin" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="Admin" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Tenants" EntityType="SPF.Tenant" />
+        <EntitySet Name="Roles" EntityType="SPF.Role" />
+        <EntitySet Name="Stamps" EntityType="SPF.Stamp" />
+        <EntitySet Name="TrustedIssuers" EntityType="SPF.TrustedIssuer" />
+        <EntitySet Name="Servers" EntityType="SPF.Server" />
+        <EntitySet Name="GalleryItems" EntityType="SPF.VMRoleGalleryItem" />
+        <EntitySet Name="VMRoles" EntityType="SPF.VMRole" />
+        <EntitySet Name="VMs" EntityType="SPF.VM" />
+        <EntitySet Name="EventRegistrations" EntityType="SPF.EventRegistration" />
+        <EntitySet Name="CloudServices" EntityType="SPF.CloudService" />
+        <EntitySet Name="SpfSetting" EntityType="SPF.SpfSetting" />
+        <FunctionImport Name="GetGalleryItems" ReturnType="Collection(SPF.VMRoleGalleryItem)" IsBindable="true" EntitySet="GalleryItems" m:IsAlwaysBindable="true">
+          <Parameter Name="Stamp" Type="SPF.Stamp" />
+        </FunctionImport>
+        <FunctionImport Name="Publish" ReturnType="SPF.VMRoleGalleryItem" IsBindable="true" EntitySet="GalleryItems" m:IsAlwaysBindable="true">
+          <Parameter Name="VMRoleGalleryItem" Type="SPF.VMRoleGalleryItem" />
+        </FunctionImport>
+        <FunctionImport Name="Unpublish" ReturnType="SPF.VMRoleGalleryItem" IsBindable="true" EntitySet="GalleryItems" m:IsAlwaysBindable="true">
+          <Parameter Name="VMRoleGalleryItem" Type="SPF.VMRoleGalleryItem" />
+        </FunctionImport>
+        <FunctionImport Name="GetStamps" ReturnType="Collection(SPF.Stamp)" IsBindable="true" EntitySet="Stamps" m:IsAlwaysBindable="true">
+          <Parameter Name="VMRoleGalleryItem" Type="SPF.VMRoleGalleryItem" />
+        </FunctionImport>
+        <FunctionImport Name="Start" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="VM" Type="SPF.VM" />
+        </FunctionImport>
+        <FunctionImport Name="Stop" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="VM" Type="SPF.VM" />
+        </FunctionImport>
+        <FunctionImport Name="Shutdown" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="VM" Type="SPF.VM" />
+        </FunctionImport>
+        <FunctionImport Name="Pause" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="VM" Type="SPF.VM" />
+        </FunctionImport>
+        <FunctionImport Name="Resume" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="VM" Type="SPF.VM" />
+        </FunctionImport>
+        <FunctionImport Name="Restart" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="VM" Type="SPF.VM" />
+        </FunctionImport>
+        <AssociationSet Name="TenantUserRolesRelationship" Association="SPF.Tenant_Roles">
+          <End Role="Tenant" EntitySet="Tenants" />
+          <End Role="Roles" EntitySet="Roles" />
+        </AssociationSet>
+        <AssociationSet Name="TenantsStampsRelationship" Association="SPF.Tenant_Stamps">
+          <End Role="Tenant" EntitySet="Tenants" />
+          <End Role="Stamps" EntitySet="Stamps" />
+        </AssociationSet>
+        <AssociationSet Name="StampsServersRelationship" Association="SPF.Stamp_Servers_Server_Stamps">
+          <End Role="Stamp_Servers" EntitySet="Stamps" />
+          <End Role="Server_Stamps" EntitySet="Servers" />
+        </AssociationSet>
+        <AssociationSet Name="StampsTenantsRelationship" Association="SPF.Stamp_Tenants">
+          <End Role="Stamp" EntitySet="Stamps" />
+          <End Role="Tenants" EntitySet="Tenants" />
+        </AssociationSet>
+        <AssociationSet Name="ServersSpfSettingsRelationship" Association="SPF.Server_SpfSettings">
+          <End Role="Server" EntitySet="Servers" />
+          <End Role="SpfSettings" EntitySet="SpfSetting" />
+        </AssociationSet>
+        <AssociationSet Name="VMRoleToVMRelationship" Association="SPF.VMRole_VMs">
+          <End Role="VMRole" EntitySet="VMRoles" />
+          <End Role="VMs" EntitySet="VMs" />
+        </AssociationSet>
+        <AssociationSet Name="CloudServiceToVMRoleRelationship" Association="SPF.CloudService_Resources">
+          <End Role="CloudService" EntitySet="CloudServices" />
+          <End Role="Resources" EntitySet="VMRoles" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

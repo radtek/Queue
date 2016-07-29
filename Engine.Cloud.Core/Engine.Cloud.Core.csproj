@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{54054D6F-6BD9-4EC5-A5EB-75294AFB5B75}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Engine.Cloud.Core</RootNamespace>
+    <AssemblyName>Engine.Cloud.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Polly">
+      <HintPath>..\packages\Polly.2.0.0\lib\net45\Polly.dll</HintPath>
+    </Reference>
+    <Reference Include="RefactorThis.GraphDiff">
+      <HintPath>..\packages\RefactorThis.GraphDiff.2.0.1\lib\RefactorThis.GraphDiff.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>..\packages\SSH.NET.2013.4.7\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\AccountDomain.cs" />
+    <Compile Include="Domain\Services\AdditionalIP\IpServerServiceKvmRj.cs" />
+    <Compile Include="Domain\Services\MemoryVcpu\MemoryVcpuServiceKvmRj.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServiceCodeMonitor\ServiceCodeMonitorKvmRJ1.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\VirtualMachineServiceKvmRj.cs" />
+    <Compile Include="Domain\IpServerDomain.cs" />
+    <Compile Include="Domain\QueueActionDomain.cs" />
+    <Compile Include="Domain\QueueActionStepDomain.cs" />
+    <Compile Include="Domain\ServerBlockDomain.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServerEngine.cs" />
+    <Compile Include="Model\DataContext\Client.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\EngineCloudDataContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EngineCloudDataContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\EngineCloudDataContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\Image.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\Plan.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\QueueAction.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\QueueActionReference.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\QueueActionStep.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\Server.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataContext\ServerBlock.cs">
+      <DependentUpon>EngineCloudDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ServerHosts\VirtualMachineHost.cs" />
+    <Compile Include="Model\ImageInfos.cs" />
+    <Compile Include="Model\DataContext\ELMAH_Error.cs" />
+    <Compile Include="Model\ClientBasicInfo.cs" />
+    <Compile Include="Model\ClientServices.cs" />
+    <Compile Include="Model\SnapshotHyperv\SnapshotServer.cs" />
+    <Compile Include="Domain\ImageDomain.cs" />
+    <Compile Include="Domain\MonitoringDomain.cs" />
+    <Compile Include="Domain\ClientDomain.cs" />
+    <Compile Include="Domain\MemoryVcpuDomain.cs" />
+    <Compile Include="Domain\SendInstructionsDomain.cs" />
+    <Compile Include="Domain\Services\XenServiceBase.cs" />
+    <Compile Include="Domain\Services\QueueAction\ActionRequest.cs" />
+    <Compile Include="Domain\Services\QueueAction\QueueActionService.cs" />
+    <Compile Include="Domain\ServerDomain.cs" />
+    <Compile Include="Domain\Services\AdditionalIP\IPServiceFactory.cs" />
+    <Compile Include="Domain\Services\AdditionalIP\IPServiceHyperV.cs" />
+    <Compile Include="Domain\Services\AdditionalIP\IPServerServiceKvmSp.cs" />
+    <Compile Include="Domain\Services\AdditionalIP\IPServerServiceXenSp.cs" />
+    <Compile Include="Domain\Services\AdditionalIP\IPServerServiceXenRj.cs" />
+    <Compile Include="Domain\Services\AdditionalIP\IIPServerService.cs" />
+    <Compile Include="Domain\Services\HyperVServiceBase.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServiceCodeMonitor\IServiceCodeMonitor.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServiceCodeMonitor\ServiceCodeMonitorFactory.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServiceCodeMonitor\ServiceCodeMonitorXenRJ1.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServiceCodeMonitor\ServiceCodeMonitorXenSP1.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServiceCodeMonitor\ServiceCodeMonitorKvmSP1.cs" />
+    <Compile Include="Domain\Services\QueueAction\ServiceCodeMonitor\ServiceCodeMonitorHyperV.cs" />
+    <Compile Include="Domain\Services\QueueAction\StepRequest.cs" />
+    <Compile Include="Model\InvoiceDetails.cs" />
+    <Compile Include="Service References\ServiceReferenceAdmin\Reference.cs" />
+    <Compile Include="Service References\ServiceReferenceAdmin\Reference1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.datasvcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReferenceVmm\Reference.cs" />
+    <Compile Include="Service References\ServiceReferenceVmm\Reference1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.datasvcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ClonableObject.cs" />
+    <Compile Include="Utils\ConfigureDedicatedFirewallLinux.cs" />
+    <Compile Include="Utils\ChangePasswordLinux.cs" />
+    <Compile Include="Utils\ChangePasswordWindows.cs" />
+    <Compile Include="Utils\DeserializeDictionaryObject.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsARecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsCnameRecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsMxRecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsNsRecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsPtrRecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsRecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsRecords.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsSrvRecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsDnsTxtRecord.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\MsZone.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\Record.cs" />
+    <Compile Include="Utils\DnsManager\DomainObjects\RecordType.cs" />
+    <Compile Include="Utils\DnsManager\Enums\MsDnsRecordType.cs" />
+    <Compile Include="Utils\DnsManager\Enums\ZoneType.cs" />
+    <Compile Include="Utils\DnsManager\Factories\ConfigurationBuilder.cs" />
+    <Compile Include="Utils\DnsManager\Factories\ManagementScopeFactory.cs" />
+    <Compile Include="Utils\DnsManager\Services\RecordServices.cs" />
+    <Compile Include="Utils\DnsManager\Services\DnsZoneService.cs" />
+    <Compile Include="Utils\Extensions\ElmahExtension.cs" />
+    <Compile Include="Utils\Extensions\RecursiveSelectExtensions.cs" />
+    <Compile Include="Utils\Extensions\HttpSubmitter.cs" />
+    <Compile Include="Utils\Extensions\JsonExtension.cs" />
+    <Compile Include="Utils\IpCloudService\IpCloudService.cs" />
+    <Compile Include="Utils\Logging\Log4NetAdapter.cs" />
+    <Compile Include="Utils\Logging\LogUtils.cs" />
+    <Compile Include="Utils\MemoryCacheManager.cs" />
+    <Compile Include="Utils\PetaPoco.cs" />
+    <Compile Include="Utils\SendEmailClient.cs" />
+    <Compile Include="Utils\ParseXmlObject.cs" />
+    <Compile Include="Utils\SerializableXmlObject.cs" />
+    <Compile Include="Utils\TemplateEngine.cs" />
+    <Compile Include="Domain\Services\VirtualMachineServiceException.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\VirtualMachineServiceFactory.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\VirtualMachineServiceHyperV.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\VirtualMachineServiceKvmSp.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\VirtualMachineServiceXenRj.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\VirtualMachineServiceXenSp.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\IVirtualMachineService.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\Mappers\IMapperVirtualMachineService.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\Mappers\MapperVirtualMachineServiceHyperV.cs" />
+    <Compile Include="Domain\Services\VirtualMachine\Mappers\MapperVirtualMachineServiceXenSp.cs" />
+    <Compile Include="Domain\Services\MemoryVcpu\MemoryServiceFactory.cs" />
+    <Compile Include="Domain\Services\MemoryVcpu\IMemoryVcpuService.cs" />
+    <Compile Include="Domain\Services\MemoryVcpu\MemoryVcpuServiceHypervisorV.cs" />
+    <Compile Include="Domain\Services\MemoryVcpu\MemoryVcpuServiceKvmSp.cs" />
+    <Compile Include="Domain\Services\MemoryVcpu\MemoryVcpuServiceXenRj.cs" />
+    <Compile Include="Domain\Services\MemoryVcpu\MemoryVcpuServiceXenSp.cs" />
+    <Compile Include="Model\DataContext\EngineCloudDataContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EngineCloudDataContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Exceptions\ClientException.cs" />
+    <Compile Include="Model\Requests\InstallServerRequest.cs" />
+    <Compile Include="Model\QueueActionStep.cs" />
+    <Compile Include="Model\Results\QueueActionResult.cs" />
+    <Compile Include="Model\Results\ServiceResult.cs" />
+    <Compile Include="Model\Resource.cs" />
+    <Compile Include="Model\NetworkInterface.cs" />
+    <Compile Include="Model\Ip.cs" />
+    <Compile Include="Model\Image.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\QueueAction.cs" />
+    <Compile Include="Model\Enuns.cs" />
+    <Compile Include="Model\Server.cs" />
+    <Compile Include="Model\Plan.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\AppSettings.cs" />
+    <Compile Include="Utils\CertificateHTTPSHelper.cs" />
+    <Compile Include="Utils\Cryptography\Base64.cs" />
+    <Compile Include="Utils\Cryptography\MD5.cs" />
+    <Compile Include="Utils\Cryptography\RSA.cs" />
+    <Compile Include="Utils\DataAnnotationsValidator\DataAnnotationsValidator.cs" />
+    <Compile Include="Utils\DataAnnotationsValidator\ObjectExtensions.cs" />
+    <Compile Include="Utils\DataAnnotationsValidator\SkipRecursiveValidation.cs" />
+    <Compile Include="Utils\Extensions\DateTimeExtentions.cs" />
+    <Compile Include="Utils\Extensions\EmailExtensions.cs" />
+    <Compile Include="Utils\Extensions\EnumExtensions.cs" />
+    <Compile Include="Utils\Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Utils\Extensions\IntExtentions.cs" />
+    <Compile Include="Utils\Extensions\StringExtentions.cs" />
+    <Compile Include="Utils\FastReplacer.cs" />
+    <Compile Include="Utils\HtmlHelpers.cs" />
+    <Compile Include="Utils\Logging\LogFactory.cs" />
+    <Compile Include="Utils\MapperInnerObjects.cs" />
+    <Compile Include="Utils\SerializableJsonObject.cs" />
+    <Compile Include="Utils\TelnetClient.cs" />
+    <Compile Include="Utils\Throw.cs" />
+    <Compile Include="Utils\TimeHelper.cs" />
+    <Compile Include="Utils\VMMService\DataContract\VirtualmachineNetworkContract.cs" />
+    <Compile Include="Utils\VMMService\DataContract\VirtualmachineContract.cs" />
+    <Compile Include="Utils\VMMService\DataContract\VirtualmachineDiskContract.cs" />
+    <Compile Include="Utils\VMMService\VMMClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model\DataContext\EngineCloudDataContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EngineCloudDataContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Engine.Cloud.Core.ServiceReferenceAdmin.Admin.datasource" />
+    <None Include="Properties\DataSources\Engine.Cloud.Core.ServiceReferenceVmm.VMM.datasource" />
+    <None Include="Service References\ServiceReferenceAdmin\service.edmx" />
+    <None Include="Service References\ServiceReferenceVmm\service.edmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\pt-br\Email\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\DataContext\EngineCloudDataContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EngineCloudDataContext.Context.cs</LastGenOutput>
+      <DependentUpon>EngineCloudDataContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\DataContext\EngineCloudDataContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EngineCloudDataContext.cs</LastGenOutput>
+      <DependentUpon>EngineCloudDataContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReferenceAdmin\Reference.datasvcmap">
+      <Generator>DataServicesCoreClientGenerator</Generator>
+      <LastGenOutput>Reference1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\ServiceReferenceVmm\Reference.datasvcmap">
+      <Generator>DataServicesCoreClientGenerator</Generator>
+      <LastGenOutput>Reference1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
